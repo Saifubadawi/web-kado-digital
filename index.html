@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Hadiah ulang tahun interaktif spesial untukmu.">
+    <meta name="theme-color" content="#090607">
+    <title>🎂 Selamat Ulang Tahun</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div id="app">
+
+        <!-- HEADER BAR -->
+        <header id="header-bar" class="header-hidden">
+            <span id="header-title"></span>
+            <button id="btn-close" class="header-close" aria-label="Tutup">&times;</button>
+        </header>
+
+        <!-- MUSIC CONTROLLER -->
+        <div id="music-controller" class="music-hidden">
+            <button id="btn-music" aria-label="Toggle musik">
+                <svg id="music-icon-on" class="music-icon" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                    <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                </svg>
+                <svg id="music-icon-off" class="music-icon music-icon-hidden" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                    <line x1="23" y1="9" x2="17" y2="15"></line>
+                    <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+            </button>
+        </div>
+
+        <!-- PARTICLE LAYER -->
+        <div id="particle-layer" aria-hidden="true"></div>
+
+        <!-- CONFETTI LAYER -->
+        <div id="confetti-layer" aria-hidden="true"></div>
+
+        <!-- PETALS LAYER -->
+        <div id="petals-layer" aria-hidden="true"></div>
+
+        <!-- ===== SCENE 1: OPENING ===== -->
+        <section id="scene-opening" class="scene active">
+            <div class="scene-content opening-content">
+                <div class="opening-particles" id="opening-particles" aria-hidden="true"></div>
+                <div class="opening-text-group">
+                    <p class="opening-line opening-line-1" id="opening-line-1"></p>
+                    <p class="opening-line opening-line-2" id="opening-line-2"></p>
+                    <p class="opening-line opening-line-3" id="opening-line-3" style="display:none;"></p>
+                </div>
+                <button class="btn btn-primary" id="btn-mulai" style="opacity:0; pointer-events:none;">
+                    Mulai Membuka 🎁
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 2: KUE DAN LILIN ===== -->
+        <section id="scene-candle" class="scene">
+            <div class="scene-content candle-content">
+                <p class="candle-text candle-text-1" id="candle-text-1"></p>
+                <p class="candle-text candle-text-2" id="candle-text-2" style="display:none;"></p>
+
+                <div class="cake-container">
+                    <div class="cake" id="cake">
+                        <!-- Candle -->
+                        <div class="candle-assembly" id="candle-assembly">
+                            <div class="flame-wrap" id="flame-wrap">
+                                <div class="flame" id="flame"></div>
+                                <div class="flame-glow" id="flame-glow"></div>
+                            </div>
+                            <div class="smoke-layer" id="smoke-layer"></div>
+                            <div class="candle-stick">
+                                <div class="wick"></div>
+                                <div class="stick-body"></div>
+                                <div class="stick-stripe"></div>
+                                <div class="stick-stripe stick-stripe-2"></div>
+                            </div>
+                        </div>
+                        <!-- Cake layers -->
+                        <div class="cake-tier tier-top">
+                            <div class="frosting"></div>
+                            <div class="dots">
+                                <span></span><span></span><span></span><span></span><span></span><span></span>
+                            </div>
+                        </div>
+                        <div class="cake-tier tier-mid"></div>
+                        <div class="cake-tier tier-bot"></div>
+                        <div class="cake-plate"></div>
+                    </div>
+                </div>
+
+                <!-- Blow progress ring -->
+                <div class="blow-ring" id="blow-ring" style="display:none;">
+                    <svg viewBox="0 0 120 120">
+                        <circle class="blow-ring-bg" cx="60" cy="60" r="52"/>
+                        <circle class="blow-ring-fill" id="blow-ring-fill" cx="60" cy="60" r="52"/>
+                    </svg>
+                    <span class="blow-ring-text" id="blow-ring-text">0%</span>
+                </div>
+
+                <p class="candle-instruction" id="candle-instruction"></p>
+
+                <button class="btn btn-primary" id="btn-nyalakan">Nyalakan Lilinnya</button>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 3: PESAN GELAP ===== -->
+        <section id="scene-dark-message" class="scene">
+            <div class="scene-content dark-message-content">
+                <div class="dark-message-lines" id="dark-message-lines"></div>
+                <button class="btn btn-primary" id="btn-dark-next" style="opacity:0; pointer-events:none;">
+                    Lanjut →
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 4: PILIH WISH ===== -->
+        <section id="scene-wish" class="scene">
+            <div class="scene-content wish-content">
+                <p class="wish-subtitle" id="wish-subtitle">SATU PERMOHONAN</p>
+                <h2 class="scene-title" id="wish-title"></h2>
+                <div class="wish-grid" id="wish-grid"></div>
+                <p class="wish-selected-text" id="wish-selected-text" style="display:none;"></p>
+                <button class="btn btn-primary" id="btn-wish-next" style="opacity:0; pointer-events:none;">
+                    Lanjut →
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 5: GALERI KENANGAN ===== -->
+        <section id="scene-gallery" class="scene">
+            <div class="scene-content gallery-content">
+                <p class="gallery-subtitle" id="gallery-subtitle"></p>
+                <h2 class="gallery-title" id="gallery-title"></h2>
+                <p class="gallery-desc" id="gallery-desc"></p>
+                <div class="heart-gallery" id="heart-gallery"></div>
+                <button class="btn btn-primary" id="btn-gallery-next" style="opacity:0; pointer-events:none;">
+                    Lanjut →
+                </button>
+            </div>
+            <!-- Photo modal -->
+            <div class="photo-modal" id="photo-modal" role="dialog" aria-modal="true">
+                <div class="photo-modal-backdrop" id="photo-modal-backdrop"></div>
+                <div class="photo-modal-body">
+                    <button class="modal-close-btn" id="modal-close-btn" aria-label="Tutup">&times;</button>
+                    <div class="modal-photo-frame" id="modal-photo-frame"></div>
+                    <p class="modal-caption" id="modal-caption"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 6: SURAT ===== -->
+        <section id="scene-letter" class="scene">
+            <div class="scene-content letter-content">
+                <p class="letter-label">SURAT KECIL</p>
+                <div class="letter-paper" id="letter-paper">
+                    <div class="letter-corner letter-corner-tl"></div>
+                    <div class="letter-corner letter-corner-tr"></div>
+                    <div class="letter-corner letter-corner-bl"></div>
+                    <div class="letter-corner letter-corner-br"></div>
+                    <div class="letter-texture"></div>
+                    <div class="letter-inner">
+                        <div class="letter-header-deco">❦</div>
+                        <div class="letter-body" id="letter-body">
+                            <span class="typewriter-cursor" id="typewriter-cursor">|</span>
+                        </div>
+                        <div class="letter-signature" id="letter-signature"></div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="btn-letter-next" style="opacity:0; pointer-events:none;">
+                    Masih ada lagi →
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 7: KARTU UCAPAN ===== -->
+        <section id="scene-card" class="scene">
+            <div class="scene-content card-content">
+                <div class="birthday-card">
+                    <div class="card-border">
+                        <div class="card-inner">
+                            <div class="card-ornament card-ornament-tl"></div>
+                            <div class="card-ornament card-ornament-tr"></div>
+                            <div class="card-ornament card-ornament-bl"></div>
+                            <div class="card-ornament card-ornament-br"></div>
+                            <p class="card-label" id="card-label"></p>
+                            <h1 class="card-title" id="card-title"></h1>
+                            <div class="card-divider"></div>
+                            <p class="card-from" id="card-from"></p>
+                            <div class="card-wish-block">
+                                <p class="card-wish-prefix" id="card-wish-prefix"></p>
+                                <h2 class="card-wish-highlight" id="card-wish-highlight"></h2>
+                                <p class="card-wish-suffix" id="card-wish-suffix"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary" id="btn-card-next">
+                    Buka Bunga Penutup 🌷
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 8: BUKET BUNGA ===== -->
+        <section id="scene-flower" class="scene">
+            <div class="scene-content flower-content">
+                <div class="bouquet-area" id="bouquet-area">
+                    <div class="bouquet" id="bouquet">
+                        <!-- Flowers -->
+                        <div class="bq-flower bq-flower-1">
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-petal"></div>
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-center"></div>
+                        </div>
+                        <div class="bq-flower bq-flower-2">
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-petal"></div>
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-center"></div>
+                        </div>
+                        <div class="bq-flower bq-flower-3">
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-petal"></div>
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-center"></div>
+                        </div>
+                        <div class="bq-flower bq-flower-4">
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-petal"></div>
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-center"></div>
+                        </div>
+                        <div class="bq-flower bq-flower-5">
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-petal"></div>
+                            <div class="bq-petal"></div><div class="bq-petal"></div><div class="bq-center"></div>
+                        </div>
+                        <!-- Wrapper -->
+                        <div class="bq-paper"></div>
+                        <div class="bq-ribbon"></div>
+                        <div class="bq-ribbon-tail bq-ribbon-tail-l"></div>
+                        <div class="bq-ribbon-tail bq-ribbon-tail-r"></div>
+                    </div>
+                    <p class="bouquet-hint" id="bouquet-hint"></p>
+                </div>
+
+                <!-- Flower info card -->
+                <div class="flower-card" id="flower-card" style="display:none;">
+                    <p class="flower-card-title" id="flower-card-title"></p>
+                    <p class="flower-card-subtitle" id="flower-card-subtitle"></p>
+                    <p class="flower-card-desc" id="flower-card-desc"></p>
+                    <div class="flower-list" id="flower-list"></div>
+                </div>
+                <button class="btn btn-primary" id="btn-flower-next" style="opacity:0; pointer-events:none;">
+                    Lanjut →
+                </button>
+            </div>
+        </section>
+
+        <!-- ===== SCENE 9: FINAL SURPRISE ===== -->
+        <section id="scene-final" class="scene">
+            <div class="scene-content final-content">
+                <p class="final-intro" id="final-intro"></p>
+                <div class="gift-box-area" id="gift-box-area">
+                    <div class="gift-box" id="gift-box">
+                        <div class="gift-lid" id="gift-lid"></div>
+                        <div class="gift-body-box"></div>
+                        <div class="gift-bow">
+                            <div class="bow-loop bow-loop-l"></div>
+                            <div class="bow-loop bow-loop-r"></div>
+                            <div class="bow-knot"></div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="btn-open-gift">
+                        Buka Hadiah Terakhir
+                    </button>
+                </div>
+                <div class="final-reveal" id="final-reveal" style="display:none;">
+                    <h1 class="final-big-title" id="final-big-title"></h1>
+                    <p class="final-message" id="final-message-text"></p>
+                    <p class="final-thanks" id="final-thanks-text"></p>
+                    <div class="final-actions">
+                        <button class="btn btn-primary" id="btn-restart">Ulangi dari Awal</button>
+                        <button class="btn btn-secondary" id="btn-music-toggle">Putar Lagu</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EXIT MODAL ===== -->
+        <div class="exit-modal" id="exit-modal" role="dialog" aria-modal="true" style="display:none;">
+            <div class="exit-modal-backdrop" id="exit-modal-backdrop"></div>
+            <div class="exit-modal-card">
+                <p class="exit-modal-text">Yakin ingin keluar dari hadiah ini?</p>
+                <div class="exit-modal-actions">
+                    <button class="btn btn-secondary" id="btn-stay">Tetap di sini</button>
+                    <button class="btn btn-primary" id="btn-leave">Keluar</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Audio -->
+    <audio id="bg-music" loop preload="none">
+        <source src="music/bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Scripts -->
+    <script src="data/content.js"></script>
+    <script src="js/effects.js"></script>
+    <script src="js/candle.js"></script>
+    <script src="js/wishes.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/letter.js"></script>
+    <script src="js/scenes.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

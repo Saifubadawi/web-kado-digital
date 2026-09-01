@@ -1,0 +1,139 @@
+/* ============================================
+   BIRTHDAY GIFT - RESPONSIVE
+   ============================================ */
+
+/* Tablet */
+@media (min-width: 768px) {
+    .scene-content {
+        padding: 3rem 2rem;
+    }
+
+    .heart-gallery {
+        max-width: 440px;
+        gap: 10px;
+    }
+
+    .letter-paper {
+        max-width: 460px;
+    }
+
+    .birthday-card {
+        max-width: 400px;
+    }
+
+    .bouquet {
+        width: 220px;
+        height: 300px;
+    }
+}
+
+/* Desktop - keep content mobile-sized */
+@media (min-width: 1024px) {
+    .scene-content {
+        padding: 3rem 2rem;
+    }
+
+    .heart-gallery {
+        max-width: 460px;
+    }
+
+    .letter-paper {
+        max-width: 480px;
+    }
+
+    .birthday-card {
+        max-width: 420px;
+    }
+
+    .bouquet {
+        width: 230px;
+        height: 310px;
+    }
+}
+
+/* Small phones (<= 360px) */
+@media (max-width: 360px) {
+    .scene-content {
+        padding: 1.8rem 1rem;
+    }
+
+    .wish-grid {
+        gap: 0.7rem;
+    }
+
+    .wish-card {
+        padding: 1.2rem 0.6rem;
+        min-height: 104px;
+    }
+
+    .heart-gallery {
+        gap: 6px;
+    }
+
+    .letter-paper {
+        padding: 1.4rem 1.2rem;
+    }
+
+    .tier-top { width: 104px; }
+    .tier-mid { width: 138px; }
+    .tier-bot { width: 168px; }
+    .cake-plate { width: 188px; }
+
+    .bouquet {
+        width: 170px;
+        height: 235px;
+    }
+
+    .gift-box {
+        width: 150px;
+        height: 150px;
+    }
+}
+
+/* Landscape phones */
+@media (max-height: 520px) and (orientation: landscape) {
+    .scene-content {
+        padding: 0.75rem 1.5rem;
+        justify-content: flex-start;
+        overflow-y: auto;
+        gap: 0.5rem;
+    }
+
+    .cake-container {
+        min-height: 140px;
+        transform: scale(0.65);
+        margin: -1rem 0;
+    }
+
+    .scene-title,
+    .candle-text {
+        margin-bottom: 0.3rem;
+    }
+
+    .wish-grid {
+        max-width: 440px;
+    }
+
+    .wish-card {
+        min-height: 80px;
+        padding: 0.8rem;
+    }
+
+    .animation-wrap .birthday-card {
+        transform: scale(0.75);
+    }
+
+    .letter-paper {
+        min-height: auto;
+        max-height: 60vh;
+        overflow-y: auto;
+    }
+}
+
+/* Safe area for notched devices */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .scene-content {
+        padding-top: calc(1.5rem + env(safe-area-inset-top));
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+}
