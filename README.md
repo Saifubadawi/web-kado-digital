@@ -6,7 +6,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
 Aplikasi web kado ulang tahun digital yang interaktif, estetik, dan sinematik. Dirancang khusus untuk memberikan pengalaman momen ulang tahun yang berkesan dan personal melalui gabungan musik latar, efek animasi kelopak bunga/kelap-kelip/konfeti, simulasi tiup lilin, galeri kenangan, serta pesan ucapan mendalam.
-
+# web-kado-digital
+# untuk perubahan nama dan galeri semua terletak di folder data 
+# di data nama ,teks , dan keterangan foto bisa di ubah di dalam folder data dengan file content.js
 ---
 
 ## ✨ Fitur Utama
@@ -119,5 +121,6 @@ Agar kado digital ini bisa langsung dibuka melalui tautan oleh penerima:
 ---
 
 ## 📝 Lisensi
+
 
 Proyek ini dibuat untuk tujuan hiburan, kado personal, dan pembelajaran. Bebas digunakan dan dimodifikasi! ❤️
